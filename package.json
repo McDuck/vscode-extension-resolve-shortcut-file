@@ -1,0 +1,59 @@
+{
+  "name": "resolve-shortcut",
+  "displayName": "Resolve Shortcut",
+  "description": "Resolves Windows .lnk shortcut files and opens the target file or folder",
+  "version": "0.0.1",
+  "publisher": "vscode-extension-user",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "resolve-shortcut.resolveShortcut",
+        "title": "Resolve Shortcut",
+        "description": "Resolves a Windows .lnk shortcut file and opens its target"
+      },
+      {
+        "command": "resolve-shortcut.openShortcut",
+        "title": "Open Shortcut Target",
+        "description": "Opens the target of a .lnk shortcut file"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "resolve-shortcut.openShortcut",
+          "when": "resourceExtname == .lnk",
+          "group": "1_modification"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.75.0",
+    "@types/glob": "^8.0.0",
+    "@types/mocha": "^10.0.0",
+    "@types/node": "16.x",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
+    "eslint": "^8.30.0",
+    "glob": "^8.0.3",
+    "mocha": "^10.2.0",
+    "typescript": "^4.9.4",
+    "@vscode/test-electron": "^2.2.0"
+  }
+}
