@@ -56,7 +56,22 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	});
 
-	context.subscriptions.push(resolveCommand, openCommand, fileOpenHandler, outputChannel);
+	// Handle file explorer click events for .lnk files
+	const editorChangeHandler = vscode.window.onDidChangeActiveTextEditor(async (editor: vscode.TextEditor | undefined) => {
+		if (editor && editor.document.fileName.endsWith('.lnk')) {
+			// Automatically resolve and open the shortcut when clicked in explorer
+			try {
+				const targetUri = await handleShortcutResolution(vscode.Uri.file(editor.document.fileName));
+				if (targetUri) {
+					await vscode.commands.executeCommand('vscode.open', targetUri);
+				}
+			} catch (error) {
+				outputChannel.appendLine(`Auto-resolve error: ${error}`);
+			}
+		}
+	});
+
+	context.subscriptions.push(resolveCommand, openCommand, fileOpenHandler, editorChangeHandler, outputChannel);
 }
 
 async function handleShortcutResolution(uri?: vscode.Uri): Promise<vscode.Uri | null> {

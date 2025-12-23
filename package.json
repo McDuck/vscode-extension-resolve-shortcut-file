@@ -4,13 +4,19 @@
   "description": "Resolves Windows .lnk shortcut files and opens the target file or folder",
   "version": "0.0.1",
   "publisher": "vscode-extension-user",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gvann/vscode-extension-resolve-shortcut"
+  },
   "engines": {
     "vscode": "^1.75.0"
   },
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onFileSystem:file"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
@@ -23,6 +29,13 @@
         "command": "resolve-shortcut.openShortcut",
         "title": "Open Shortcut Target",
         "description": "Opens the target of a .lnk shortcut file"
+      }
+    ],
+    "fileHandlers": [
+      {
+        "fileName": "*.lnk",
+        "affinity": "default",
+        "uriScheme": "file"
       }
     ],
     "menus": {
