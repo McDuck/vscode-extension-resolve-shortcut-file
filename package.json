@@ -28,7 +28,6 @@
   },
   "main": "./out/extension.js",
   "scripts": {
-    "vscode:prepublish": "tsc -p ./",
     "compile": "tsc -p ./",
     "test": "node ./out/test/runTest.js",
     "pretest": "npm run compile"

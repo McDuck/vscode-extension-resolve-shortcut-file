@@ -38,7 +38,7 @@ Write-Host "━━━━━━━━━━━━━━━━━━━━━━�
 
 # Compile
 Write-Host "`n[1/3] Compiling..." -ForegroundColor Yellow
-& npm @("run", "compile")
+& npx @("tsc", "-p", "./")
 if ($LASTEXITCODE -ne 0) {
     Write-Host "❌ Compilation failed" -ForegroundColor Red
     exit 1
