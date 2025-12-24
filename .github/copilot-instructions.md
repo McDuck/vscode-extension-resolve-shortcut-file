@@ -44,11 +44,14 @@ resolve-shortcut/
 ```
 
 ### Build & Test Results
+
 ✅ **Dependencies Installed** - npm packages successfully installed via Node.js
 ✅ **Project Compiled** - TypeScript compilation successful with no errors
 ✅ **All Tests Passing** - 9/9 tests passing:
   - 4 Integration Tests (Shortcut creation, resolution, and file handling)
   - 5 Unit Tests (File validation and error handling)
+✅ **Build Script Ready** - F5 now executes build.ps1 for complete build/package/install workflow
+✅ **Test Fixtures Created** - setup-test-fixtures.bat creates test .lnk files
 
 **Recent Fixes Applied:**
 - Fixed import paths in test files (../ instead of ../../)
@@ -56,6 +59,9 @@ resolve-shortcut/
 - Improved shortcut resolution to use file-based PowerShell scripts (more reliable)
 - Added timeout handling for async tests
 - Fixed test runner to properly execute Mocha tests
+- Fixed build.ps1 to use proper PowerShell array syntax for npm/npx commands (eliminates DEP0190 warnings)
+- Updated launch.json to point to build.ps1 and configured F5 to build/package/install
+- Added -Help and -Install flags to build.ps1 for flexible build options
 
 ### Key Files Created
 - **extension.ts** - Contains activation code, command handlers, and file open event listeners
@@ -92,13 +98,20 @@ resolve-shortcut/
 ### How to Use This Extension
 
 **Development Mode:**
-1. Press `F5` to launch the extension in a new VS Code window
-2. Create test shortcuts or use existing .lnk files
+1. Press `F5` to compile, package, and install the extension in one step
+2. Test the installed extension in VS Code using test-fixtures or real .lnk files
 3. Test via Command Palette or File Explorer context menu
+
+**Build Options:**
+- `./build.ps1` - Full build with compilation, packaging, and local installation (default)
+- `./build.ps1 -Install:$false` - Compile and package only, skip installation
+- `./build.ps1 -Help` - Display help information
 
 **Testing:**
 - Run `npm test` to execute all unit and integration tests
+- Run `npm run compile` to compile TypeScript
 - Watch mode: Run `npm run watch` for continuous compilation
+- Create test fixtures: Run `scripts\setup-test-fixtures.bat` to generate test .lnk files
 
 ### Ready for Distribution
 The extension is fully functional and ready for:

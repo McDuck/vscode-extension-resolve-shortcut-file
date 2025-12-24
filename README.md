@@ -5,28 +5,15 @@ A VS Code extension that resolves Windows `.lnk` shortcut files and opens their 
 ## Features
 
 - **Resolve Shortcuts**: Automatically resolve `.lnk` Windows shortcut files to their target paths
-- **Open Target**: Open the target file or folder with a single click or command
-- **Consistent Behavior**: Single-click and open actions behave identically
-- **Context Menu**: Right-click on `.lnk` files in the file explorer to resolve or open their targets
+- **Open Target**: Open the target file or folder with a single or double click
+- **Consistent Behavior**: Single-click and double-click actions behave identically
 - **Error Handling**: Clear error messages if shortcuts cannot be resolved
 
 ## Usage
 
-### Via Command Palette
+### Via Click
 
-1. Open the Command Palette (`Ctrl+Shift+P`)
-2. Search for "Resolve Shortcut" or "Open Shortcut Target"
-3. Select the desired command
-
-### Via File Explorer
-
-1. Right-click on a `.lnk` file in the File Explorer
-2. Select "Open Shortcut Target" from the context menu
-3. The target file or folder will open automatically
-
-### Via Single Click
-
-- In the File Explorer, single-click a `.lnk` file and it will automatically resolve and open the target
+- In the File Explorer, single-click or double-click a `.lnk` file and it will automatically resolve and open the target
 
 ## Requirements
 
@@ -85,37 +72,29 @@ The integration tests automatically:
 
 #### Manual Testing with Test Fixtures
 
-To create test shortcut files you can manually open and test:
+To create test shortcut files you can manually open and test, run:
 
-**Windows Batch:**
 ```bash
 scripts\setup-test-fixtures.bat
 ```
 
-**PowerShell:**
+This creates test shortcuts in the `test-fixtures/` directory that you can use for manual testing.
+
+### Debugging & Building
+
+**Using F5 (Recommended):**
+1. Press `F5` to compile, package, and install the extension
+2. Test the extension in a new VS Code window that opens
+3. Use the installed extension or test with `test-fixtures/test-shortcut.lnk`
+
+**Manual Build Commands:**
 ```powershell
-powershell -ExecutionPolicy Bypass -File scripts/create-test-shortcut.ps1
+# Compile and package only (skip installation)
+./build.ps1 -Install:$false
+
+# Show help with all options
+./build.ps1 -Help
 ```
-
-**Python:**
-```bash
-python scripts/setup-test-fixtures.py
-```
-
-These scripts create:
-- `test-fixtures/test-shortcut.lnk` - Shortcut pointing to a text file
-- `test-fixtures/test-folder-shortcut.lnk` - Shortcut pointing to a directory
-
-You can then:
-1. Open the project in VS Code
-2. Navigate to `test-fixtures/` folder
-3. Single-click or double-click `test-shortcut.lnk` to trigger the extension
-4. Or right-click and select "Open Shortcut Target"
-
-### Debugging
-
-1. Press `F5` to start the extension in debug mode
-2. Test the extension in the new VS Code window that opens
 
 ## License
 
