@@ -1,4 +1,4 @@
-# Resolve Shortcut
+# Resolve Shortcut File
 
 A VS Code extension that resolves Windows `.lnk` shortcut files and opens their target files or folders.
 

@@ -18,8 +18,8 @@ $link = $shortcut.CreateShortcut('${shortcutPath}')
 Write-Output $link.TargetPath
 `;
 
-		// Write script to a temporary file in the same directory as the shortcut
-		const tempDir = path.dirname(shortcutPath);
+		// Write script to a temporary file in the system temp directory to avoid workspace clutter
+		const tempDir = require('os').tmpdir();
 		const scriptPath = path.join(tempDir, `resolve-${Date.now()}.ps1`);
 		
 		try {

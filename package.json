@@ -1,72 +1,53 @@
 {
-  "name": "resolve-shortcut",
-  "displayName": "Resolve Shortcut",
-  "description": "Resolves Windows .lnk shortcut files and opens the target file or folder",
+  "name": "resolve-shortcut-file",
+  "displayName": "Resolve Shortcut File",
+  "publisher": "your-name",
   "version": "0.0.1",
-  "publisher": "vscode-extension-user",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gvann/vscode-extension-resolve-shortcut"
-  },
   "engines": {
-    "vscode": "^1.75.0"
+    "vscode": "^1.85.0"
   },
-  "categories": [
-    "Other"
-  ],
   "activationEvents": [
-    "onFileSystem:file"
+    "onCustomEditor:lnk.resolver"
   ],
-  "main": "./out/extension.js",
   "contributes": {
-    "commands": [
+    "customEditors": [
       {
-        "command": "resolve-shortcut.resolveShortcut",
-        "title": "Resolve Shortcut",
-        "description": "Resolves a Windows .lnk shortcut file and opens its target"
-      },
-      {
-        "command": "resolve-shortcut.openShortcut",
-        "title": "Open Shortcut Target",
-        "description": "Opens the target of a .lnk shortcut file"
+        "viewType": "lnk.resolver",
+        "displayName": "Resolve Shortcut File",
+        "selector": [
+          {
+            "filenamePattern": "*.lnk"
+          }
+        ]
       }
-    ],
-    "fileHandlers": [
-      {
-        "fileName": "*.lnk",
-        "affinity": "default",
-        "uriScheme": "file"
-      }
-    ],
-    "menus": {
-      "explorer/context": [
-        {
-          "command": "resolve-shortcut.openShortcut",
-          "when": "resourceExtname == .lnk",
-          "group": "1_modification"
-        }
-      ]
-    }
+    ]
   },
+  "main": "./out/extension.js",
   "scripts": {
-    "vscode:prepublish": "npm run compile",
+    "vscode:prepublish": "npm run esbuild-base -- --minify",
+    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node",
+    "esbuild": "npm run esbuild-base -- --sourcemap",
+    "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile && npm run lint",
+    "test": "node ./out/test/runTest.js",
+    "pretest": "npm run compile",
     "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
+    "package": "vsce package",
+    "publish": "vsce publish"
   },
   "devDependencies": {
-    "@types/vscode": "^1.75.0",
-    "@types/glob": "^8.0.0",
-    "@types/mocha": "^10.0.0",
-    "@types/node": "16.x",
-    "@typescript-eslint/eslint-plugin": "^5.45.0",
-    "@typescript-eslint/parser": "^5.45.0",
-    "eslint": "^8.30.0",
-    "glob": "^8.0.3",
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "@vscode/test-electron": "^2.3.0",
+    "esbuild": "^0.20.0",
+    "eslint": "^8.50.0",
     "mocha": "^10.2.0",
-    "typescript": "^4.9.4",
-    "@vscode/test-electron": "^2.2.0"
+    "typescript": "^5.3.3",
+    "vsce": "^2.15.0"
   }
 }
