@@ -1,11 +1,11 @@
 {
   "name": "resolve-shortcut-file",
   "displayName": "Resolve Shortcut File",
-  "publisher": "your-name",
-  "version": "0.0.1",
+  "publisher": "McDuck",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-name/resolve-shortcut-file"
+    "url": "https://github.com/McDuck/resolve-shortcut-file"
   },
   "engines": {
     "vscode": "^1.85.0"
