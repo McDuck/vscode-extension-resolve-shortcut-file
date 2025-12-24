@@ -3,6 +3,10 @@
   "displayName": "Resolve Shortcut File",
   "publisher": "your-name",
   "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-name/resolve-shortcut-file"
+  },
   "engines": {
     "vscode": "^1.85.0"
   },
@@ -24,30 +28,19 @@
   },
   "main": "./out/extension.js",
   "scripts": {
-    "vscode:prepublish": "npm run esbuild-base -- --minify",
-    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node",
-    "esbuild": "npm run esbuild-base -- --sourcemap",
-    "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
+    "vscode:prepublish": "tsc -p ./",
     "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
     "test": "node ./out/test/runTest.js",
-    "pretest": "npm run compile",
-    "lint": "eslint src --ext ts",
-    "package": "vsce package",
-    "publish": "vsce publish"
+    "pretest": "npm run compile"
   },
   "devDependencies": {
     "@types/glob": "^8.1.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "^20.0.0",
     "@types/vscode": "^1.85.0",
-    "@typescript-eslint/eslint-plugin": "^6.0.0",
-    "@typescript-eslint/parser": "^6.0.0",
-    "@vscode/test-electron": "^2.3.0",
-    "esbuild": "^0.20.0",
-    "eslint": "^8.50.0",
-    "mocha": "^10.2.0",
-    "typescript": "^5.3.3",
-    "vsce": "^2.15.0"
+    "@vscode/test-electron": "^2.5.2",
+    "glob": "^13.0.0",
+    "mocha": "^11.7.5",
+    "typescript": "^5.3.3"
   }
 }

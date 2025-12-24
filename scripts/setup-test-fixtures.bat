@@ -29,15 +29,6 @@ powershell -Command ^
   "$Shortcut.Save(); " ^
   "Write-Host 'Created test-shortcut.lnk'"
 
-REM Create shortcut to directory using PowerShell
-powershell -Command ^
-  "$WshShell = New-Object -ComObject WScript.Shell; " ^
-  "$Shortcut = $WshShell.CreateShortcut('%FIXTURES_DIR%\test-folder-shortcut.lnk'); " ^
-  "$Shortcut.TargetPath = '%FIXTURES_DIR%\test-target-dir'; " ^
-  "$Shortcut.Description = 'Test shortcut to a folder'; " ^
-  "$Shortcut.Save(); " ^
-  "Write-Host 'Created test-folder-shortcut.lnk'"
-
 echo.
 echo Test fixtures created in: %FIXTURES_DIR%
 echo.
