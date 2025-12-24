@@ -20,9 +20,8 @@
 
 ### Core Features
 1. **Shortcut Resolution** - Uses PowerShell and Windows COM objects to resolve .lnk files to their target paths
-2. **File Open Handler** - Automatically resolves and opens shortcuts when opened
-3. **Context Menu Integration** - Right-click context menu option for .lnk files
-4. **Command Palette Support** - Two commands: "Resolve Shortcut" and "Open Shortcut Target"
+2. **File Open Handler** - Automatically opens shortcuts when clicked (single or double-click)
+3. **Windows-only** - Optimized for Windows systems using Windows COM objects
 
 ### Project Structure
 ```
@@ -62,6 +61,10 @@ resolve-shortcut/
 - Fixed build.ps1 to use proper PowerShell array syntax for npm/npx commands (eliminates DEP0190 warnings)
 - Updated launch.json to point to build.ps1 and configured F5 to build/package/install
 - Added -Help and -Install flags to build.ps1 for flexible build options
+- Removed vscode:prepublish hook to prevent npm shell deprecation warnings
+- Removed Command Palette support (only click-based access)
+- Removed context menu integration
+- Removed LICENSE file (no license)
 
 ### Key Files Created
 - **extension.ts** - Contains activation code, command handlers, and file open event listeners

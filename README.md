@@ -98,4 +98,5 @@ This creates test shortcuts in the `test-fixtures/` directory that you can use f
 
 ## License
 
-MIT
+This project is released into the public domain under the [Unlicense](https://unlicense.org/).
+You are free to use, modify, and distribute this software for any purpose without any restrictions.
