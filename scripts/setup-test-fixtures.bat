@@ -15,11 +15,6 @@ REM Create target file
 echo This is a test target file for the resolve-shortcut extension. > "%FIXTURES_DIR%\test-target.txt"
 echo Created test target file
 
-REM Create target directory
-if not exist "%FIXTURES_DIR%\test-target-dir" mkdir "%FIXTURES_DIR%\test-target-dir"
-echo This is a test target directory. > "%FIXTURES_DIR%\test-target-dir\readme.txt"
-echo Created test target directory
-
 REM Create shortcut to file using PowerShell
 powershell -Command ^
   "$WshShell = New-Object -ComObject WScript.Shell; " ^
