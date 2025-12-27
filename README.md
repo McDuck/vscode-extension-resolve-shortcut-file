@@ -2,7 +2,7 @@
 
 A VS Code extension that resolves Windows `.lnk` shortcut files and opens their target files or folders.
 
-![Instruction](resources/instruction.gif)
+![Instruction](./resources/instruction.gif)
 
 ## Features
 
