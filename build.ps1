@@ -56,10 +56,26 @@ Write-Host "✅ Packaged" -ForegroundColor Green
 
 # Install
 if ($Install) {
-    Write-Host "`n[3/3] Installing locally..." -ForegroundColor Yellow
+    Write-Host "`n[3/3] Installing locally." -ForegroundColor Yellow
+
     $vsix = Get-ChildItem -Filter "*.vsix" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
     if ($vsix) {
-        code --uninstall-extension "your-name.resolve-shortcut-file" 2>$null
+        # List installed extensions
+        $installedExtensions = code --list-extensions | Out-String
+
+        # Check if the specific extension is installed
+        if ($installedExtensions -like "*mcprocess.resolve-shortcut-file*") {
+            Write-Host "Uninstalling locally..." -ForegroundColor Yellow
+            code --uninstall-extension "mcprocess.resolve-shortcut-file" 2>$null
+            if ($LASTEXITCODE -eq 0) {
+                Write-Host "✅ Uninstalled" -ForegroundColor Green
+            } else {
+                Write-Host "❌ Uninstallation failed" -ForegroundColor Red
+                exit 1
+            }
+        }
+        
+        Write-Host "Installing locally..." -ForegroundColor Yellow
         code --install-extension $vsix.FullName
         if ($LASTEXITCODE -eq 0) {
             Write-Host "✅ Installed" -ForegroundColor Green
