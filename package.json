@@ -5,7 +5,7 @@
   "version": "1.0.2",
   "repository": {
     "type": "git",
-    "url": "https://github.com/McDuck/resolve-shortcut-file"
+    "url": "https://github.com/McDuck/vscode-extension-resolve-shortcut-file"
   },
   "engines": {
     "vscode": "^1.85.0"
