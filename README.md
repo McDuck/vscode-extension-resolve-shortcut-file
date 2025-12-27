@@ -2,6 +2,8 @@
 
 A VS Code extension that resolves Windows `.lnk` shortcut files and opens their target files or folders.
 
+![Instruction](resources/instruction.gif)
+
 ## Features
 
 - **Resolve Shortcuts**: Automatically resolve `.lnk` Windows shortcut files to their target paths
@@ -100,3 +102,5 @@ This creates test shortcuts in the `test-fixtures/` directory that you can use f
 
 This project is released into the public domain under the [Unlicense](https://unlicense.org/).
 You are free to use, modify, and distribute this software for any purpose without any restrictions.
+
+
